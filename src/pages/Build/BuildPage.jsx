@@ -12,8 +12,7 @@ const majorProjects = [
   {
     id: 1,
     title: "Full-Stack E-commerce Platform with Payment Integration",
-    description:
-      "Build a complete e-commerce platform with user authentication, product management, shopping cart, and payment gateway integration.",
+    description: "Build a complete e-commerce platform with user authentication, product management, shopping cart, and payment gateway integration.",
     tech: "React, Node.js, MongoDB, Advanced",
     duration: "2 - 3 weeks",
     image: "/assets/cards/major_projects/major-ecommerce.png",
@@ -22,13 +21,19 @@ const majorProjects = [
   {
     id: 2,
     title: "AI-Powered Chatbot with Natural Language Processing",
-    description:
-      "Develop an intelligent chatbot using NLP techniques to understand and respond to user queries effectively.",
+    description: "Develop an intelligent chatbot using NLP techniques to understand and respond to user queries effectively.",
     tech: "Python, NLP, Machine Learning, Advanced",
     duration: "3 - 4 weeks",
     image: "/assets/cards/major_projects/major-chatbot.png",
     trainer: true,
   },
+];
+
+// List of allowed mini project titles
+const allowedMiniProjectTitles = [
+  "Simple Calculator App",
+  "Basic To-Do List App",
+  "Simple Weather App"
 ];
 
 const BuildPage = () => {
@@ -48,6 +53,7 @@ const BuildPage = () => {
     }
   };
 
+  // Process midProjects to add free/locked and price
   const processedMidProjects = midProjects.map((project, index) => ({
     ...project,
     free: index < 2,
@@ -58,7 +64,8 @@ const BuildPage = () => {
   return (
     <main
       className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-16"
-      style={{ fontFamily: "system-ui, 'Inter', sans-serif" }}>
+      style={{ fontFamily: "system-ui, 'Inter', sans-serif" }}
+    >
       {/* Hero Header */}
       <h1
         className="mb-8"
@@ -73,7 +80,8 @@ const BuildPage = () => {
           backgroundClip: "text",
           color: "transparent",
           transition: "all 0.3s ease",
-        }}>
+        }}
+      >
         Build Your Skills with Projects
       </h1>
 
@@ -85,12 +93,13 @@ const BuildPage = () => {
             fontFamily: "'Poppins', sans-serif",
             fontWeight: "600",
             fontSize: "1.25rem",
-            background: "linear-gradient(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
+            background: "极光渐变(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             color: "transparent",
-          }}>
+          }}
+        >
           Mini Projects
         </h2>
 
@@ -103,7 +112,8 @@ const BuildPage = () => {
             <button
               onClick={() => scroll("left")}
               className="mr-2 mt-12 bg-white dark:bg-[#0a1128] rounded-full shadow p-1 hover:bg-gray-100 dark:hover:bg-[#001233]"
-              aria-label="Scroll left">
+              aria-label="Scroll left"
+            >
               <ChevronLeftIcon
                 className="w-6 h-6"
                 style={{ color: "#001233" }}
@@ -112,22 +122,23 @@ const BuildPage = () => {
             <div
               ref={scrollRef}
               className="flex overflow-x-auto pb-4 no-scrollbar gap-5 flex-1"
-              style={{ scrollBehavior: "smooth" }}>
-              {miniProjects.length > 0 ? (
-                miniProjects.map((project) => (
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {Array.isArray(miniProjects) && miniProjects
+                .filter(project => allowedMiniProjectTitles.includes(project.title))
+                .map((project) => (
                   <MiniProjectCard key={project._id} project={project} />
-                ))
-              ) : (
-                <p style={{ color: "#7c7c7c" }}>No mini projects found.</p>
-              )}
+                ))}
             </div>
             <button
               onClick={() => scroll("right")}
               className="ml-2 mt-12 bg-white dark:bg-[#0a1128] rounded-full shadow p-1 hover:bg-gray-100 dark:hover:bg-[#001233]"
-              aria-label="Scroll right">
+              aria-label="Scroll right"
+            >
               <ChevronRightIcon
                 className="w-6 h-6"
-                style={{ color: "#001233" }}/>
+                style={{ color: "#001233" }}
+              />
             </button>
           </div>
         )}
@@ -136,7 +147,8 @@ const BuildPage = () => {
           <button
             className="text-base font-medium px-6 py-2 rounded-full bg-[#bceaff] dark:bg-[#001233] text-[#001233] dark:text-[#e0e6f5] shadow border border-gray-200 hover:bg-[#daf0fa] dark:hover:bg-[#0a1128] transition"
             onClick={() => navigate("/build/mini")}
-            style={{ fontFamily: "'Poppins', sans-serif" }}>
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
             See All Mini Projects
           </button>
         </div>
@@ -155,7 +167,8 @@ const BuildPage = () => {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             color: "transparent",
-          }}>
+          }}
+        >
           Mid-Level Projects
         </h2>
         {loadingMid ? (
@@ -165,7 +178,8 @@ const BuildPage = () => {
         ) : (
           <MidLevelProjectsAnimatedLayout
             projects={processedMidProjects}
-            setShowPopup={setShowPopup}/>
+            setShowPopup={setShowPopup}
+          />
         )}
       </section>
 
@@ -176,13 +190,14 @@ const BuildPage = () => {
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: "600",
-            fontSize: "1.25rem",
+            fontSize: "极光.25rem",
             background: "linear-gradient(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             color: "transparent",
-          }}>
+          }}
+        >
           Major Projects
         </h2>
         <div className="flex flex-col gap-6">
@@ -190,7 +205,8 @@ const BuildPage = () => {
             <MajorProjectCard
               key={project.id}
               project={project}
-              setShowPopup={setShowPopup}/>
+              setShowPopup={setShowPopup}
+            />
           ))}
         </div>
       </section>
@@ -204,7 +220,8 @@ const BuildPage = () => {
             fontWeight: "600",
             fontSize: "1.25rem",
             color: "#001233",
-          }}>
+          }}
+        >
           UI Source Library
         </h2>
         <p style={{ color: "#001233", marginBottom: "1rem" }}>
@@ -213,7 +230,8 @@ const BuildPage = () => {
         <button
           className="px-5 py-2 rounded-full bg-[#bceaff] dark:bg-[#001233] text-[#001233] dark:text-[#e0e6f5] font-semibold shadow hover:bg-[#daf0fa] dark:hover:bg-[#0a1128] transition"
           onClick={() => navigate("/build/ui")}
-          style={{ fontFamily: "'Poppins', sans-serif" }}>
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
           Explore Components &rarr;
         </button>
       </section>
