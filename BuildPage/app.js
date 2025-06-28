@@ -5,9 +5,10 @@ const connectDB = require('./config/db');
 // Routes
 const miniRouter = require('./routes/mini');
 const projectRoute = require('./routes/Project');
-const majorRouter = require('./routes/major'); 
+const majorProjectRoutes = require("./routes/major");
 const bookingRouter = require('./routes/Booking');
 const midProjectRouter = require('./routes/midProjectRoutes');
+
 const app = express();
 
 app.use(cors()); 
@@ -19,9 +20,10 @@ connectDB();
 // Routes
 app.use('/api', miniRouter);
 app.use('/api', midProjectRouter);
-app.use('/api', majorRouter);
+app.use("/api", majorProjectRoutes);
 app.use('/api', bookingRouter);
 app.use('/api', projectRoute);
+
 // 404 Handler
 app.use((req, res) => {
     res.status(404).json({ message: 'Not found' });
