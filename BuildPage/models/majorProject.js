@@ -1,9 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const MajorSchema = new mongoose.Schema({ 
-    title: { type: String, required: true },
-    description: { type: String },
-    isFree: { type: Boolean, default: false }
-})
+const majorProjectSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  tech: String,
+  duration: String,
+  image: String,
+  trainer: Boolean,
+});
 
-module.exports = mongoose.model('Major', MajorSchema);
+module.exports = mongoose.model("MajorProject", majorProjectSchema);
