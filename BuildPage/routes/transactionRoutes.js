@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const transactionController = require('../controllers/transactionController');
+const transactionController = require('../controller/transactionController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/submit-transaction', protect, transactionController.submitTransactionId);
