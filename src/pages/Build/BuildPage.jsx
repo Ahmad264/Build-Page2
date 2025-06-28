@@ -53,8 +53,9 @@ const BuildPage = () => {
     }
   };
 
-  // Process midProjects to add free/locked and price
-  const processedMidProjects = midProjects.map((project, index) => ({
+  // Defensive check for midProjects
+  const safeMidProjects = Array.isArray(midProjects) ? midProjects : [];
+  const processedMidProjects = safeMidProjects.map((project, index) => ({
     ...project,
     free: index < 2,
     locked: index >= 2,
@@ -93,7 +94,7 @@ const BuildPage = () => {
             fontFamily: "'Poppins', sans-serif",
             fontWeight: "600",
             fontSize: "1.25rem",
-            background: "极光渐变(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
+            background: "linear-gradient(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -190,7 +191,7 @@ const BuildPage = () => {
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: "600",
-            fontSize: "极光.25rem",
+            fontSize: "1.25rem",
             background: "linear-gradient(90deg, #007bff 0%, #0600a6 50%, #b4a1f4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -201,7 +202,7 @@ const BuildPage = () => {
           Major Projects
         </h2>
         <div className="flex flex-col gap-6">
-          {majorProjects.map((project) => (
+          {Array.isArray(majorProjects) && majorProjects.map((project) => (
             <MajorProjectCard
               key={project.id}
               project={project}
