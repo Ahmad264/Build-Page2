@@ -1,8 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { getMajorProjects } = require('../controller/majorController');
+const { getAllMajorProjects } = require("../controller/majorController");
 
-// GET all major projects
-router.get('/major-projects', getMajorProjects);
+router.get("/major-projects", getAllMajorProjects);
 
 module.exports = router;
