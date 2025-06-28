@@ -9,6 +9,7 @@ const majorProjectRoutes = require('./routes/major');
 const bookingRouter = require('./routes/Booking');
 const midProjectRouter = require('./routes/midProjectRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api', majorProjectRoutes);
 app.use('/api', bookingRouter);
 app.use('/api', projectRoute);
 app.use('/api', transactionRoutes);
+app.use('/api', userRoutes);
 
 // 404 Handler
 app.use((req, res) => {
