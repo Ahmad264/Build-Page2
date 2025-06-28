@@ -1,11 +1,10 @@
-const Major = require('../models/majorProject')
+const MajorProject = require("../models/majorProject");
 
-exports.getMajorProjects = async (req, res) => {
-    try {
-        const majors = await Major.find({});
-        res.json(majors);
-    } catch (err) {
-        res.status(500).json({ message: 'Server Error' });
-    }
+exports.getAllMajorProjects = async (req, res) => {
+  try {
+    const projects = await MajorProject.find();
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
-
