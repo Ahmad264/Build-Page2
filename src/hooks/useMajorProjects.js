@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useMajorProjects() {
-  const [projects, setProjects] = useState([]);
+const useMajorProjects = () => {
+  const [majorProjects, setMajorProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/major-projects")
-      .then((res) => setProjects(res.data))
+    axios
+      .get("/api/major-projects")
+      .then((res) => setMajorProjects(res.data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
-  return { projects, loading, error };
-}
+  return { majorProjects, loading, error };
+};
+
+export default useMajorProjects;
